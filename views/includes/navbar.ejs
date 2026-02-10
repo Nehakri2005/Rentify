@@ -1,0 +1,192 @@
+<style>
+  .search-container {
+    position: relative;
+    width: 100%; /* make it flexible */
+     
+  }
+
+  .input-search {
+    width: 100%;
+    padding: 10px 3rem 10px 1rem; /* right‑pad for the icon */
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    font-size: 17px;
+    font-weight: 500;
+    background: transparent;
+  }
+
+  .btn-search {
+    position: absolute;
+    top: 50%;
+    right: 0.75rem; /* tweak until it lines up perfectly */
+    transform: translateY(-50%);
+    padding: 0;
+    height: 80%;
+    width: 10%;
+    border-radius: 50%;
+    background-color: #ff385c;
+  }
+
+  .btn-search:hover {
+    border-radius: 50%;
+    background-color: #e32548;
+  }
+
+  .btn-search i {
+    font-size: 18px;
+    pointer-events: none;
+    color: white; /* so clicks go to the button itself */
+  }
+  .navbar-toggler {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  @media (max-width: 375px) {
+    .search-container {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 0.25rem;
+    }
+  
+    .input-search {
+      font-size: 15px;
+      
+    }
+  
+    .btn-search {
+      width: 20%;
+      right: 0.5rem;
+     
+    }
+
+    
+  }
+
+  @media (min-width: 768px) {
+    .search-container {
+      flex: 1 1 100%;
+      width: 450px; /* optional max */
+    }
+  }
+
+ 
+  
+</style>
+
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid d-flex align-items-center justify-content-between ">
+    <a class="navbar-brand" href="/listings"
+      ><i class="fa-regular fa-compass"></i>
+    </a>
+<!-- search box for small screen -->
+<div class=" d-flex justify-content-center d-md-none mx-1  ">
+  <form
+    action="/listings/search"
+    method="GET"
+    class="d-flex search-container "
+    role="search"   
+  >
+    
+    <input
+      class="form-control input-search"
+      type="search"
+      name="location"
+      placeholder="Search destinations"
+      value=""
+    />
+    
+    
+    
+  </form>
+</div>
+
+
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasNavbar"
+      aria-controls="offcanvasNavbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+
+    <div
+      class="collapse navbar-collapse d-none d-md-flex"
+      id="navbarNavAltMarkup"
+    >
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings"><b>Explore</b></a>
+      </div>
+
+
+      <!-- search box for medium and up to -->
+      <div class="navbar-nav ms-auto d-none d-md-flex">
+        <form
+          action="/listings/search"
+          method="GET"
+          class="d-none d-md-flex search-container "
+          role="search"
+        >
+          <input
+            class="form-control input-search"
+            type="search"
+            name="location"
+            placeholder="Search destinations"
+            value=""
+          />
+          <button class="btn btn-search" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </div>
+
+
+
+
+
+
+
+      <!-- for login signup logout -->
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new"><b>Airbnb Your Home </b></a>
+        <% if(!currUser){ %>
+        <a class="nav-link" href="/signup"><b>Sign Up</b></a>
+        <a class="nav-link" href="/login"> <b>Login </b></a>
+        <% }%> <% if(currUser){ %>
+        <a class="nav-link" href="/logout"> <b>LogOut</b></a>
+        <% }%>
+      </div>
+    </div>
+
+
+      <!-- Offcanvas for small screens -->
+      <div class="offcanvas offcanvas-end d-md-none" tabindex="-1" id="offcanvasNavbar" 
+      aria-labelledby="offcanvasNavbarLabel" style=" width:210px">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="navbar-nav">
+          <a class="nav-link" href="/listings">Explore</a>
+          <a class="nav-link" href="/listings/new"><b>Airbnb Your Home</b></a>
+          <% if (!currUser) { %>
+            <a class="nav-link" href="/signup"><b>Sign Up</b></a>
+            <a class="nav-link" href="/login"><b>Login</b></a>
+          <% } %>
+          <% if (currUser) { %>
+            <a class="nav-link" href="/logout"><b>Logout</b></a>
+          <% } %>
+        </div>
+
+
+
+  </div>
+</nav>

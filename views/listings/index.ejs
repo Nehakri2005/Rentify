@@ -1,0 +1,233 @@
+<%layout("/layouts/boilerplate")%>
+<style>
+  
+ #filters{
+  display: flex;
+ overflow-x: auto;
+ }
+
+#filters::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+ .filter{
+  text-align: center;
+  margin: 1.2rem;
+  margin-top: 2rem;
+  opacity: 0.7;
+  
+  
+ }
+ .filter p{
+  font-size: 0.8rem;
+  font-weight: 600;
+ }
+
+ .filter a{
+  text-decoration: none;
+  color: inherit;
+ }
+
+ .filter-icon{
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  transition: filter 0.3s ease;
+ }
+
+ .filter:hover{
+  opacity: 1;
+  cursor: pointer;
+  text-decoration: none; /* disable default underline */
+  box-shadow: inset 0 -3px 0 0 rgba(206, 201, 201, 0.8);
+ }
+
+ .taxinfo{
+  display: none;
+ }
+
+ .tax-toggle{
+  flex: 0 0 auto; 
+  width: 20rem !important;
+  height: 4rem; 
+  border: 1px solid rgb(222, 209, 209);
+  border-radius: 1rem;
+  margin-left: 1rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+ }
+ .tax-toggle:hover{
+  border: 1px solid black;
+ }
+
+ .form-check-reverse {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Or whatever spacing you need */
+}
+
+ /* Make toggle flat and modern */
+
+ .form-check-input[type="checkbox"] {
+  width: 3rem;
+  height: 1.5rem;
+  margin: 0 0 0 1.5rem;
+  padding-left: 1rem;
+  background-color: #ddd;
+  border-radius: 1rem;
+  border: none;
+  position: relative;
+  top: 2px;
+  left: 2px;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  
+}
+
+
+
+/* When checked */
+.form-check-input[type="checkbox"]:checked {
+  background-color:  #ff385c; /* Dark mode switch */
+}
+
+.form-check-input[type="checkbox"]:checked::before {
+  transform: translateX(1.5rem);
+}
+
+/* Hide the label default margin */
+.form-check-label {
+  margin-left: 0.75rem;
+  font-weight: 500;
+}
+
+
+
+ 
+
+</style>
+
+
+    <div id="filters" class="filter-bar">
+
+      <div class="filter"> 
+        <a href="/listings/category/Trending"> 
+          <div> <i class="fa-solid fa-fire"></i></div>
+        <p> Trending</p> </a>
+      </div>
+
+
+      <div class="filter"> 
+        <a href="/listings/category/Islands"> 
+          <!-- <div> <i class="fa-solid fa-fire"></i></div> -->
+           <div><img class="filter-icon" src="/images/island.jpg" alt=""></div>
+        <p> Islands</p> </a>
+      </div>
+
+      <div class="filter">
+        <a href="/listings/category/Rooms"> 
+        <!-- <div><i class="fa-solid fa-bed"></i></div> -->
+        <div><img class="filter-icon" src="/images/Rooms.jpg" alt=""></div>
+        <p> Rooms</p> </a>
+      </div>
+
+
+      <div class="filter">
+        <a href="/listings/category/IconicCity"> 
+        <div><i class="fa-solid fa-mountain-city"></i></div>
+        <p> Iconic City</p>  </a>
+      </div>
+
+      <div class="filter"> 
+        <a href="/listings/category/Historicalhomes"> 
+        <div ><i class="fa-brands fa-fort-awesome"></i></div>
+        <p>Historical homes</p> </a>
+      </div>
+
+      <div class="filter">
+        <a href="/listings/category/Tropical"> 
+        <!-- <div><i class="fa-solid fa-mountain"></i></div> -->
+        <div><img class="filter-icon" src="/images/tropical.jpg" alt=""></div>
+        <p>Tropical</p> </a>
+      </div>
+
+      <div class="filter">
+        <a href="/listings/category/A-frames"> 
+        <!-- <div><i class="fa-solid fa-person-swimming"></i></div> -->
+        <div><img class="filter-icon" src="/images/Aframes.jpg" alt=""></div>
+        <p> A-frames</p> </a>
+      </div>
+      
+      <div class="filter">
+        <a href="/listings/category/Amazingviews"> 
+        <!-- <div><i class="fa-solid fa-campground"></i></div> -->
+        <div><img class="filter-icon" src="/images/amezingviews.jpg" alt=""></div>
+        <p>Amazing views</p> </a>
+      </div>
+      
+      <div class="filter">
+        <a href="/listings/category/Amazingpools"> 
+        <!-- <div><i class="fa-solid fa-cow"></i></div> -->
+        <div><img class="filter-icon" src="/images/amezingpools.jpg" alt=""></div>
+        <p> Amazing pools</p> </a>
+      </div>
+      
+      <div class="filter">
+        <a href="/listings/category/Farms"> 
+        <!-- <div><i class="fa-solid fa-snowflake"></i></div> -->
+        <div><img class="filter-icon" src="/images/farms.jpg" alt=""></div>
+        <p> Farms</p> </a>
+      </div>
+<!-- </div> -->
+
+<!-- toggle switches -->
+ <div class="tax-toggle  ">
+      <div class="form-check-reverse form-switch">
+        <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
+        <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+        
+      </div>
+    </div>
+   
+    </div>
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+    <% for(let listing of alllistings){ %>
+      <a class="listing-link" href="/listings/<%=listing._id%>">
+    <div class="card listing-card" >
+        <img src="<%=listing.image.url%>" class="card-img-top" alt="listing_image" height="320rem">
+        <div class="card-img-overlay"></div>
+        <div class="card-body">
+          <p class="card-text">
+            <b><%=listing.title%></b> <br>
+            &#8377 <%=listing.price.toLocaleString("en-IN")%> /Night
+           <span class="taxinfo"> &nbsp; &nbsp;+18% GST </span>
+          </p>
+        </div>
+      </div>
+    </a>
+      <%}%>
+    </div>
+    
+  
+  <script>
+    let taxswitch=document.getElementById('switchCheckDefault');
+    taxswitch.addEventListener('click',()=>{
+      let taxinfo=document.getElementsByClassName("taxinfo");
+    for(info of taxinfo){
+      if(info.style.display!="inline"){
+      info.style.display="inline";
+    }else{
+      info.style.display="none"; 
+    }
+    }
+    })
+    
+
+  </script>
+    
+
+
+
