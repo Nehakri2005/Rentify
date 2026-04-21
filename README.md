@@ -57,14 +57,14 @@ git clone https://github.com/Nehakri2005/Rentify.git
 cd Rentify
 ```
 2. Install dependencies
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 4. Run the application
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 6. Open in browser
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
